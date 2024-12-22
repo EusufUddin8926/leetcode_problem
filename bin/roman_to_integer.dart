@@ -1,5 +1,5 @@
 void main() {
-  Solution1 solution = Solution1();
+  Solution2 solution = Solution2();
   print(solution.romanToInt('MCMXCIV'));
 }
 
@@ -82,5 +82,28 @@ class Solution1 {
     }
 
     return totalSum;
+  }
+}
+
+class Solution2 {
+  int romanToInt(String s) {
+    //MCMXCIV
+    Map<String, int> map = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000};
+
+    int output = 0;
+    for (int i = 0; i < s.length; i++) {
+      print(i.toString());
+      if (i == s.length - 1) {
+        output += map[s[i]]!;
+        break;
+      }
+      if (map[s[i]]! < map[s[i + 1]]!) {
+        output += map[s[i + 1]]! - map[s[i]]!;
+        i++;
+      } else {
+        output += map[s[i]]!;
+      }
+    }
+    return output;
   }
 }
